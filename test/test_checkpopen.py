@@ -36,7 +36,8 @@ def test_small_communication():
 
 def test_exception():
     with pytest.raises(RuntimeError):
-        with CheckPopen(['ssh', '-N', 'localhost'], shell=False, stdin=subprocess.PIPE) as proc:
+        # what should be better "daemon" to test this?
+        with CheckPopen(['ssh', '-o', 'StrictHostKeyChecking=no', '-o', 'UserKnownHostsFile=/dev/null', '-N', 'localhost'], shell=False, stdin=subprocess.PIPE) as proc:
             raise RuntimeError('foobar')
 
 def test_failsTo_raise_on_false():
@@ -61,7 +62,7 @@ class TestFailsToRaiseException(object):
             # SIGALRM technique provided by pytest_timeout.py
             signal.signal(signal.SIGALRM, self.handler)
             signal.setitimer(signal.ITIMER_REAL, 5)
-            with klass(['ssh', '-N', 'localhost'], shell=False, stdin=subprocess.PIPE) as proc:
+            with klass(['ssh', '-o', 'StrictHostKeyChecking=no', '-o', 'UserKnownHostsFile=/dev/null', '-N', 'localhost'], shell=False, stdin=subprocess.PIPE) as proc:
                 raise RuntimeError('exception during processing daemon')
         except Exception as e:
             message = str(e)
