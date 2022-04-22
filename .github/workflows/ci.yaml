@@ -24,8 +24,8 @@ jobs:
         git submodule update
     - name: Setup sshd for testing
       run: |
-        apt update
-        apt install -y openssh-server openssh-client
+        sudo apt update
+        sudo apt install -y openssh-server openssh-client
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
