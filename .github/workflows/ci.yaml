@@ -26,6 +26,9 @@ jobs:
       run: |
         sudo apt update
         sudo apt install -y openssh-server openssh-client
+        mkdir -p ~/.ssh
+        ssh-keygen -f ~/.ssh/id_rsa -N ''
+        ssh-keygen -yf ~/.ssh/id_rsa > ~/.ssh/authorized_keys
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
