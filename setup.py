@@ -7,7 +7,7 @@ setup(
     description='Popen context manager variant that raises CalledProcessError like check_call',
     long_description=open("README.md").read(),
     long_description_content_type='text/markdown',
-    version='0.0.0.1',
+    version='0.0.0.2',
     url='https://github.com/cielavenir/checkpopen',
     license='MIT',
     author='cielavenir',
